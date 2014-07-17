@@ -5,10 +5,8 @@ var TabsViewModel = can.Map.extend({
   addPanel: function( panel ){
     var panels = this.attr("panels");
     panels.push(panel);
-    console.log(panels.length);
     panel.attr("visible", false);
     if ( panels.attr("length") === 1 ){
-      console.log('activating panel');
       this.activate( panel );
     }
   }, 
@@ -24,8 +22,6 @@ var TabsViewModel = can.Map.extend({
     var active = this.attr("active");
     if( active !== panel ){
       active && active.attr("visible", false);
-      console.log(active && active.attr("visible", false));
-      //active.attr("visible", false);
       this.attr("active", panel.attr("visible", true));
     }
   }
@@ -49,12 +45,10 @@ can.Component.extend({
     },
     removed: function() {
       this.element.parent().scope().addPanel( this.scope );
-      //this.element.parent().scope().removePanel( this.scope );
     }
   }
 });
 
 // Add to page
 var frag = can.view("app-template", {});
-console.log($(frag));
 $("#my-app").html(frag);
